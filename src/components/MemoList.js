@@ -1,10 +1,23 @@
 import React from 'react';
+import MemoItem from './MemoItem';
 
-export default function MemoList({ memos }) {
+export default function MemoList({
+  memos,
+  selectedMemoIndex,
+  setSelectedMemoIndex,
+}) {
   return (
     <>
       {memos.map((memo, index) => (
-        <div key={index}>{memo.title}</div>
+        <MemoItem
+          key={index}
+          onClick={() => {
+            setSelectedMemoIndex(index);
+          }}
+          isSelected={index === selectedMemoIndex}
+        >
+          {memo.title}
+        </MemoItem>
       ))}
     </>
   );
